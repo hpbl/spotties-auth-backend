@@ -8,6 +8,9 @@
  */
 
 var request = require('request'); // "Request" library
+const express = require('express')
+const path = require('path')
+const PORT = process.env.PORT || 5000
 
 var client_id = 'e81545ea2fac4b499b295ec9f10dc8df'; // Your client id
 var client_secret = 'd04145cf0883444c8a11e6b0cbbcb791'; // Your secret
@@ -24,25 +27,32 @@ var authOptions = {
   json: true
 };
 
-request.post(authOptions, function(error, response, body) {
-  if (!error && response.statusCode === 200) {
+express()
+  .use(express.static(path.join(__dirname, 'public')))
+  .get('/', (req, res) => authenticateSpotify())
+  .listen(PORT, () => console.log(`Listening on ${ PORT }`))
 
-    // use the access token to access the Spotify Web API
-    var token = body.access_token;
-    var options = {
-      url: 'https://api.spotify.com/v1/search',
-      headers: {
-        'Authorization': 'Bearer ' + token
-      },
-      json: true,
-      qs: {
-        q: 'tania%20bowra',
-        type: 'artist'
-      }
-    };
+function authenticateSpotify() {
+  request.post(authOptions, function(error, response, body) {
+    if (!error && response.statusCode === 200) {
 
-    request.get(options, function(error, response, body) {
-      console.log(body);
-    });
-  }
-});
+      // use the access token to access the Spotify Web API
+      var token = body.access_token;
+      var options = {
+        url: 'https://api.spotify.com/v1/search',
+        headers: {
+          'Authorization': 'Bearer ' + token
+        },
+        json: true,
+        qs: {
+          q: 'tania%20bowra',
+          type: 'artist'
+        }
+      };
+
+      request.get(options, function(error, response, body) {
+        console.log(body);
+      });
+    }
+  });
+};
