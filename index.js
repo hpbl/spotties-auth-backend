@@ -12,8 +12,8 @@ const express = require('express')
 const path = require('path')
 const PORT = process.env.PORT || 8888
 
-var client_id = 'e81545ea2fac4b499b295ec9f10dc8df'; // Your client id
-var client_secret = 'd04145cf0883444c8a11e6b0cbbcb791'; // Your secret
+var client_id = process.env.SPOTIFY_CLIENT_ID; // Your client id
+var client_secret = process.env.SPOTIFY_CLIENT_SECRET; // Your secret
 
 var app = express();
 
