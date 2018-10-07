@@ -10,6 +10,7 @@
 var request = require('request'); // "Request" library
 const express = require('express')
 const path = require('path')
+const PORT = process.env.PORT || 8888
 
 var client_id = 'e81545ea2fac4b499b295ec9f10dc8df'; // Your client id
 var client_secret = 'd04145cf0883444c8a11e6b0cbbcb791'; // Your secret
@@ -50,5 +51,4 @@ app.get('/client_credentials', function(req, res) {
   });
 });
 
-console.log('Listening on 8888');
-app.listen(8888);
+app.listen(PORT, () => console.log(`Listening on ${ PORT }`))
