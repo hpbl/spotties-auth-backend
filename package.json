@@ -1,0 +1,25 @@
+{
+  "name": "spotties-auth-backend",
+  "version": "1.0.0",
+  "description": "Spottify authentication for spotties app",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "keywords": [
+    "spotify",
+    "authentication"
+  ],
+  "author": "Hilton Pintor",
+  "license": "MIT",
+  "dependencies": {
+    "cookie-parser": "^1.4.3",
+    "cors": "^2.8.4",
+    "express": "~4.16.0",
+    "querystring": "~0.2.0",
+    "request": "~2.83.0"
+  },
+  "engines": {
+    "node": "10.5.0"
+  }
+}
