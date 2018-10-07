@@ -27,12 +27,12 @@ var authOptions = {
   json: true
 };
 
-express()
-  .use(express.static(path.join(__dirname, 'public')))
-  .get('/', (req, res) => authenticateSpotify())
-  .listen(PORT, () => console.log(`Listening on ${ PORT }`))
+var app = express();
 
-function authenticateSpotify() {
+app.use(express.static(path.join(__dirname, 'public')))
+  .get('/client_credentials', (req, res) => authenticateSpotify(res))
+
+function authenticateSpotify(res) {
   request.post(authOptions, function(error, response, body) {
     if (!error && response.statusCode === 200) {
 
@@ -51,8 +51,11 @@ function authenticateSpotify() {
       };
 
       request.get(options, function(error, response, body) {
-        console.log(body);
+        res.send(body);
       });
     }
   });
 };
+
+console.log('Listening on 8888');
+app.listen(8888);
