@@ -2,7 +2,7 @@
 
 This repostory hosts the back-end needed to safely authenticate requests with spotify for the [spotties app](https://hpbl.github.io/spotties).
 
-This backend is currently hosted on Heroku, under the URL of https://vast-cliffs-56187.herokuapp.com/
+This backend is currently hosted on Heroku, under the URL of https://spotties-auth-backend.herokuapp.com/
 
 The implementation is based on the authentication examples provided by spotify on https://github.com/spotify/web-api-auth-examples
 
