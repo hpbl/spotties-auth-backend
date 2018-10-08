@@ -10,6 +10,7 @@
 var request = require('request'); // "Request" library
 const express = require('express')
 const path = require('path')
+const cors = require('cors')
 const PORT = process.env.PORT || 8888
 
 var client_id = process.env.SPOTIFY_CLIENT_ID; // Your client id
@@ -17,6 +18,7 @@ var client_secret = process.env.SPOTIFY_CLIENT_SECRET; // Your secret
 
 var app = express();
 
+app.use(cors())
 app.use(express.static(path.join(__dirname, 'public')));
 
 app.get('/', function(req, res) {
